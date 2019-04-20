@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="buildconcat" default="concatjs">
+    <property name="charset" value="utf-8"/>
+    <property name="projDir" value="${ant.file.buildconcat}/../../"/>
+    <target name="concatjs">
+        <property name="src" value="${destDir}/src"/>
+        <concat destfile="${destDir}/tmp.js" encoding="${charset}" outputencoding="${charset}">
+            <path path="${src}/package.js"/>            <path path="${src}/resource.js"/>
+            <path path="${src}/config.js"/>
+            <path path="${src}/ch_info.js"/>
+            <path path="${src}/tools.js"/>
+            <path path="${src}/cmdPb.js"/>
+            <path path="${src}/cmd.js"/>
+            <path path="${src}/text.js"/>
+
+            <path path="${src}/sdk/sdk.js"/>
+            <path path="${src}/sdk/sdk_callbacks.js"/>
+            <path path="${src}/sdk/sdk_wx.js"/>
+
+            <path path="${src}/core/Enhance.js"/>
+            <path path="${src}/core/Logger.js"/>
+            <path path="${src}/core/Protobuf.js"/>
+            <path path="${src}/core/Net.js"/>
+            <path path="${src}/core/Observer.js"/>
+            <path path="${src}/core/Base64.js"/>
+            <path path="${src}/core/MD5.js"/>
+            <path path="${src}/core/Utils.js"/>
+            <path path="${src}/core/UiUtils.js"/>
+            <path path="${src}/core/Http.js"/>
+
+            <path path="${src}/data/AwardConfig.js"/>
+            <path path="${src}/data/RaceConfig.js"/>
+            <path path="${src}/data/CasinoConfig.js"/>
+            <path path="${src}/data/GameConfig.js"/>
+            <path path="${src}/data/MatchConfig.js"/>
+            <path path="${src}/data/MegaAwardConfig.js"/>
+            <path path="${src}/data/ShopConfig.js"/>
+            <path path="${src}/data/SignInConfig.js"/>
+            <path path="${src}/data/ToolConfig.js"/>
+            <path path="${src}/data/RankConfig.js"/>
+            <path path="${src}/data/RaceUpRangeConfig.js"/>
+            <path path="${src}/data/RaceUpLevelConfig.js"/>
+            <path path="${src}/data/OnlineConfig.js"/>
+            <path path="${src}/data/MegaConfig.js"/>
+            <path path="${src}/data/TaskConfig.js"/>
+
+            <path path="${src}/model/PlayerModel.js"/>
+            <path path="${src}/model/TableModel.js"/>
+            <path path="${src}/model/ItemModel.js"/>
+            <path path="${src}/model/MatchModel.js"/>
+            <path path="${src}/model/ShopItemModel.js"/>
+            <path path="${src}/model/RaceGoupModel.js"/>
+            <path path="${src}/model/RoomModel.js"/>
+
+            <path path="${src}/ui/GameScene.js"/>
+            <path path="${src}/ui/PopupLayer.js"/>
+            <path path="${src}/ui/Alert.js"/>
+            <path path="${src}/ui/Tip.js"/>
+            <path path="${src}/ui/Connecting.js"/>
+            <path path="${src}/ui/CardNode.js"/>
+            <path path="${src}/ui/ChatFloatNode.js"/>
+            <path path="${src}/ui/TabPopupLayer.js"/>
+            <path path="${src}/ui/CCSNode.js"/>
+
+            <path path="${src}/logic/LogicObserver.js"/>
+            <path path="${src}/logic/Notice.js"/>
+            <path path="${src}/logic/Storage.js"/>
+
+            <path path="${src}/logic/enter/LogoScene.js"/>
+            <path path="${src}/logic/enter/LoadingScene.js"/>
+            <path path="${src}/logic/enter/UpdateScene.js"/>
+
+            <path path="${src}/logic/hall/node/ShopListNode.js"/>
+            <path path="${src}/logic/hall/node/RoomListNode.js"/>
+            <path path="${src}/logic/hall/node/MatchAreaListNode.js"/>
+            <path path="${src}/logic/hall/node/MatchAreaNode.js"/>
+            <path path="${src}/logic/hall/node/MegagameNode.js"/>
+            <path path="${src}/logic/hall/node/ClubNode.js"/>
+            <path path="${src}/logic/hall/layer/ActivityLayer.js"/>
+            <path path="${src}/logic/hall/layer/AuthenticationLayer.js"/>
+            <path path="${src}/logic/hall/layer/PreventAddictionLayer.js"/>
+            <path path="${src}/logic/hall/layer/megagameLayer.js"/>
+            <path path="${src}/logic/hall/layer/SettingLayer.js"/>
+            <path path="${src}/logic/hall/layer/MyInfoLayer.js"/>
+            <path path="${src}/logic/hall/layer/BagLayer.js"/>
+            <path path="${src}/logic/hall/layer/MailLayer.js"/>
+            <path path="${src}/logic/hall/layer/ObtainLayer.js"/>
+            <path path="${src}/logic/hall/layer/BagCheckLayer.js"/>
+            <path path="${src}/logic/hall/layer/BagGiveLayer.js"/>
+            <path path="${src}/logic/hall/layer/FeedbackLayer.js"/>
+            <path path="${src}/logic/hall/layer/ExchangeLayer.js"/>
+            <path path="${src}/logic/hall/layer/ExchangeTicketLayer.js"/>
+            <path path="${src}/logic/hall/layer/FirstChargeLayer.js"/>
+            <path path="${src}/logic/hall/layer/BuyTicketLayer.js"/>
+            <path path="${src}/logic/hall/layer/RenameLayer.js"/>
+            <path path="${src}/logic/hall/layer/ResurrectionLayer.js"/>
+            <path path="${src}/logic/hall/layer/UpdateNoticeLayer.js"/>
+            <path path="${src}/logic/hall/layer/RankingLayer.js"/>
+            <path path="${src}/logic/hall/layer/RankingRuleLayer.js"/>
+            <path path="${src}/logic/hall/layer/MatchInfoLayer.js"/>
+            <path path="${src}/logic/hall/layer/SignIn7DayLayer.js"/>
+            <path path="${src}/logic/hall/layer/TotalRankingLayer.js"/>
+            <path path="${src}/logic/hall/layer/DailyRankingLayer.js"/>
+            <path path="${src}/logic/hall/layer/UserMatchInfoLayer.js"/>
+            <path path="${src}/logic/hall/HallScene.js"/>
+
+            <path path="${src}/sdk/sdk_h5_layer.js"/>
+            <path path="${src}/app.js"/>
+
+            <path path="${src}/logic/ddz/DdzScene.js"/>
+            <path path="${src}/logic/ddz/DdzCardTip.js"/>
+            <path path="${src}/logic/ddz/node/PropBoxNode.js"/>
+            <path path="${src}/logic/ddz/node/DdzTopNode.js"/>
+            <path path="${src}/logic/ddz/node/DdzTableNode.js"/>
+            <path path="${src}/logic/ddz/node/DdzDockNode.js"/>
+            <path path="${src}/logic/ddz/node/OperateNode.js"/>
+            <path path="${src}/logic/ddz/node/AnimationsNode.js"/>
+            <path path="${src}/logic/ddz/node/MyCardNode.js"/>
+            <path path="${src}/logic/ddz/node/UserHeadNode.js"/>
+            <path path="${src}/logic/ddz/node/TimerNode.js"/>
+            <path path="${src}/logic/ddz/layer/ResultLayer.js"/>
+            <path path="${src}/logic/ddz/layer/BigMatchResultLayer.js"/>
+            <path path="${src}/logic/ddz/layer/DdzMenuLayer.js"/>
+            <path path="${src}/logic/ddz/layer/ResultMatchEndLayer.js"/>
+            <path path="${src}/logic/ddz/layer/ResultMatchRiseLayer.js"/>
+            <path path="${src}/logic/ddz/layer/ResultMatchWaitLayer.js"/>
+            <path path="${src}/logic/ddz/layer/MatchingLayer.js"/>
+            <path path="${src}/logic/ddz/layer/DdzStartLayer.js"/>
+            <path path="${src}/logic/ddz/layer/MatchingTimeLayer.js"/>
+        </concat>
+    </target>
+</project>

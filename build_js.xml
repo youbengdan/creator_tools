@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="buildjs" default="packageJsb">
+
+    <property name="projDir" value="${ant.file.buildjs}/../../"/>
+    <echo>${projDir}</echo>
+    <property name="channels" value="${projDir}/build_res/channels"/>
+    <property name="charset" value="utf-8"/>
+
+    <property name="ch" value="1"/>
+
+    <target name="_init_channel">
+
+        <property name="chDir" value="${channels}/ch${ch}"/>
+        <property name="updateDir" location="${projDir}/build_res/update/ch${ch}"/>
+
+        <copy todir="${destDir}/src" overwrite="true">
+            <fileset dir="${chDir}">
+                <include name="ch_info.js"/>
+            </fileset>
+        </copy>
+
+        <echo>update channel resources from [${chDir}]</echo>
+
+        <copy todir="${destDir}/res" overwrite="true">
+            <fileset dir="${chDir}/res"></fileset>
+        </copy>
+        <copy todir="${destDir}/src" overwrite="true">
+            <fileset dir="${chDir}/src"></fileset>
+        </copy>
+
+        <copy todir="${destDir}/res" overwrite="true">
+            <fileset dir="${updateDir}">
+                <include name="project.manifest"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="_build">
+        <antcall target="concatjs">
+            <param name="destDir" value="${destDir}"></param>
+        </antcall>
+
+        <copy todir="${destDir}" overwrite="true">
+            <fileset dir="${projDir}">
+                <include name="main.js"/>
+            </fileset>
+        </copy>
+
+        <echo file="${destDir}/project.json">{
+            "project_type": "javascript",
+            "debugMode" : 0,
+            "showFPS" : false,
+            "frameRate" : 45,
+            "noCache" : false,
+            "id" : "gameCanvas",
+            "renderMode" : 2,
+            "engineDir":"frameworks/cocos2d-html5",
+            "modules" : ["cocos2d","cocostudio"],
+            "jsList" : [
+            "game.js"
+            ]
+            }</echo>
+        <java jar="${projDir}/tools/compiler.jar" fork="true" failonerror="false">
+            <arg value="--js=${destDir}/tmp.js" />
+            <arg value="--js_output_file=${destDir}/game.js"/>
+        </java>
+
+        <delete file="${destDir}/tmp.js"/>
+        <delete dir="${destDir}/src"/>
+
+    </target>
+
+    <target name="build_js">
+        <delete dir="${destDir}"/>
+        <mkdir dir="${destDir}" />
+        <mkdir dir="${destDir}/res"/>
+        <mkdir dir="${destDir}/script"/>
+        <mkdir dir="${destDir}/src"/>
+        <copy todir="${destDir}/res" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${projDir}/res">
+                <exclude name="ui/*.*"></exclude>
+            </fileset>
+        </copy>
+        <copy todir="${destDir}/script" overwrite="true">
+            <fileset dir="${projDir}/script"></fileset>
+        </copy>
+        <copy todir="${destDir}/src" overwrite="true">
+            <fileset dir="${projDir}/src"></fileset>
+        </copy>
+
+        <antcall target="_init_channel">
+            <param name="destDir" value="${destDir}"/>
+        </antcall>
+
+        <antcall target="_build">
+            <param name="destDir" value="${destDir}"></param>
+        </antcall>
+    </target>
+
+    <target name="build_h5">
+        <delete dir="${destDir}"/>
+        <mkdir dir="${destDir}" />
+        <mkdir dir="${destDir}/res"/>
+        <mkdir dir="${destDir}/src"/>
+        <copy todir="${destDir}/res" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${projDir}/res">
+                <exclude name="**/*.json"></exclude>
+                <exclude name="**/*.plist"></exclude>
+                <exclude name="**/*.plist"></exclude>
+                <exclude name="**/*.ExportJson"></exclude>
+                <exclude name="**/*.manifest"></exclude>
+            </fileset>
+        </copy>
+        <copy todir="${destDir}/res/ui" overwrite="true" includeEmptyDirs="false">
+            <fileset dir="${projDir}/res/ui">
+                <exclude name="**/*.json"></exclude>
+            </fileset>
+        </copy>
+        <copy todir="${destDir}/src" overwrite="true">
+        <fileset dir="${projDir}/src"></fileset>
+        </copy>
+
+        <!--<delete dir="${destDir}/res/animation"/>-->
+
+        <antcall target="_init_channel">
+            <param name="destDir" value="${destDir}"/>
+        </antcall>
+
+        <antcall target="_build">
+            <param name="destDir" value="${destDir}"></param>
+        </antcall>
+
+        <delete file="${destDir}/res/project.manifest"/>
+    </target>
+</project>
